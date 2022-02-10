@@ -1,0 +1,36 @@
+{% set name = "e3sm-cmip6-metadata" %}
+{% set version = "2022.01.13" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/E3SM-Project/CMIP6-Metadata.git
+  git_tag: master
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+  run:
+
+test:
+  commands:
+    # just a few examples
+    - test -f ${E3SM_CMIP6_METADATA}/E3SM-1-0/piControl_r1i1p1f1.json
+    - test -f ${E3SM_CMIP6_METADATA}/E3SM-1-1/piControl_r1i1p1f1.json
+
+about:
+  home: https://github.com/E3SM-Project/CMIP6-Metadata
+  summary: CMIP6 metadata files used for converting E3SM output to the CMIP6 format using CMOR.
+  doc_url: https://github.com/E3SM-Project/CMIP6-Metadata
+  dev_url: https://github.com/E3SM-Project/CMIP6-Metadata
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - tomvothecoder
+    - chengzhuzhang
