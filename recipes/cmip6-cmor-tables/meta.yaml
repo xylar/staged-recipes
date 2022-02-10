@@ -1,0 +1,36 @@
+{% set name = "cmip6-cmor-tables" %}
+{% set version = "6.9.33" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/PCMDI/cmip6-cmor-tables/archive/{{ version }}.tar.gz
+  sha256: f98be422549da19d185525c660b3bf0106863ec6b15c793270680f2fbbbf35e8
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+  run:
+
+test:
+  commands:
+    # just a few examples
+    - test -f ${CMIP6_CMOR_TABLE_ROOT}/CMIP6_grids.json
+    - test -f ${CMIP6_CMOR_TABLE_ROOT}/CMIP6_Omon.json
+
+about:
+  home: https://github.com/PCMDI/cmip6-cmor-tables
+  summary: JSON Tables for CMOR3 to create CMIP6 dataset
+  doc_url: https://github.com/PCMDI/cmip6-cmor-tables
+  dev_url: https://github.com/PCMDI/cmip6-cmor-tables
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - tomvothecoder
+    - chengzhuzhang
