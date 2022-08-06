@@ -1,0 +1,50 @@
+{% set name = "matrix_utils" %}
+{% set version = "0.2.5" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/matrix_utils-{{ version }}.tar.gz
+  sha256: 31f5f1e30373a8f7c0c4334384b43459951794747fd801360c74e207a9ba0183
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+  run:
+    - bw_processing
+    - numpy
+    - pandas
+    - python >=3.6
+    - scipy
+    - stats_arrays
+
+test:
+  imports:
+    - matrix_utils
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/brightway-lca/matrix_utils
+  summary: Tools to create matrices from data packages
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file:
+    - LICENSE
+  doc_url: https://3.docs.brightwaylca.org/
+  dev_url: https://github.com/brightway-lca/matrix_utils
+
+extra:
+  recipe-maintainers:
+    - cmutel
+    - xylar
