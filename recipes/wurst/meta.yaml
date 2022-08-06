@@ -1,0 +1,57 @@
+{% set name = "wurst" %}
+{% set version = "0.3.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wurst-{{ version }}.tar.gz
+  sha256: b74415086bdfa4cede38f47febaa9ce7e7b40ad201bed9f0fbd1517d3e9e3bb2
+
+build:
+  entry_points:
+    - wurst-cli = wurst.bin.wurst_cli:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+  run:
+    - appdirs
+    - constructive_geometries
+    - docopt
+    - numpy
+    - pandas
+    - python >=3.6
+    - python-json-logger
+    - toolz
+    - tqdm
+    - wrapt
+
+test:
+  imports:
+    - wurst
+  commands:
+    - pip check
+    - wurst-cli --help
+  requires:
+    - pip
+
+about:
+  home: https://github.com/polca/wurst
+  summary: Wurst is a python package for linking and modifying industrial ecology models
+  license: BSD-2-Clause
+  license_family: BSD
+  license_file:
+    - LICENSE
+  doc_url: https://wurst.readthedocs.io/
+  dev_url: https://github.com/polca/wurst
+
+extra:
+  recipe-maintainers:
+    - cmutel
+    - xylar
